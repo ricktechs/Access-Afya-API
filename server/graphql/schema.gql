@@ -1,3 +1,10 @@
+
+scalar Date
+enum Role {
+  staff
+  user
+}
+
 type Query{
     
 }
