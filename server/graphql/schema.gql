@@ -6,7 +6,8 @@ enum Role {
 }
 
 type Query{
-    
+  getAllUsers: [User]
+  getAllVisits: [Visit] 
 }
 
 type Mutation{
