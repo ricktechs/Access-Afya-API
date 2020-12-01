@@ -38,7 +38,10 @@ const Mutation = {
     return { user };
   },
 
-  addAssessment: async (root, args, context, info) => {},
+  addAssessment: async (root, args, context, info) => {
+    const visit = await Visit.create({ ...args });
+    return visit;
+  },
   updateAssessment: async (root, args, context, info) => {},
 };
 
