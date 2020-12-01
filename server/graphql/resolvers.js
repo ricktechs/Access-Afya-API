@@ -1,4 +1,5 @@
 require("dotenv").config();
+const bcrypt = require("bcryptjs");
 const { User, Visit } = require("../models");
 
 const Query = {
@@ -18,7 +19,12 @@ const Query = {
   },
 };
 const Mutation = {
-  signUp: async (root, args, context, info) => {},
+  signUp: async (root, args, context, info) => {
+    const password = await bcrypt.hash(args.password, 10);
+    const user = await User.create({ ...args, roles: ["staff"], password });
+
+    return { user };
+  },
   signIn: async (root, args, context, info) => {},
 
   addAssessment: async (root, args, context, info) => {},
