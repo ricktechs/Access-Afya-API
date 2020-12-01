@@ -1,0 +1,17 @@
+{
+  "name": "access-afya-api",
+  "version": "1.0.0",
+  "description": "api for analytics platform to help in the measurement and optimization of key metrics that are fundamental to operational efficiency. ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server index.js"
+  },
+  "keywords": [
+
+  ],
+  "author": "eric wahome <eric.wahome@gmail.com>",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {}
+}
