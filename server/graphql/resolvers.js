@@ -25,7 +25,18 @@ const Mutation = {
 
     return { user };
   },
-  signIn: async (root, args, context, info) => {},
+  signIn: async (root, args, context, info) => {
+    const user = await User.findOne({ email: args.email });
+
+    if (!user) {
+      throw new Error("No such user found ");
+    }
+    const valid = await bcrypt.compare(args.password, user.password);
+    if (!valid) {
+      throw new Error("Invalid password");
+    }
+    return { user };
+  },
 
   addAssessment: async (root, args, context, info) => {},
   updateAssessment: async (root, args, context, info) => {},
