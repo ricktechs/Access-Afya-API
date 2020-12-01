@@ -1,20 +1,33 @@
-
 scalar Date
 enum Role {
   staff
   user
 }
 
-type Query{
+type Query {
   getAllUsers: [User]
-  getAllVisits: [Visit] 
+  getAllVisits: [Visit]
 }
 
-type Mutation{
+type Mutation {
+  signUp(email: String!, password: String!, name: String!): AuthPayload
+  signIn(email: String!, password: String!): AuthPayload
+  addAssessment(
+    name: String!
+    issues: IssuesFeedInput
+    patients: PatientsFeedInput
+    revenue: RevenueFeedInput
+    staffId: String
+  ): Visit
 
+  updateAssessment(
+    visitId: String!
+    issues: IssuesFeedInput
+    patients: PatientsFeedInput
+    revenue: RevenueFeedInput
+    staffId: String!
+  ): Visit
 }
-
-
 
 type User {
   name: String!
@@ -61,7 +74,6 @@ type RevenueFeed {
   createdAt: Date
 }
 
-
 #
 #
 # input types
@@ -84,4 +96,3 @@ input PatientsFeedInput {
 input RevenueFeedInput {
   revenue: Float
 }
-
