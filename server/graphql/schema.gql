@@ -5,3 +5,50 @@ type Query{
 type Mutation{
 
 }
+
+
+
+type User {
+  name: String!
+  email: String!
+  password: String!
+  roles: [Role]
+  issuesReported: [IssuesFeed]
+}
+type Visit {
+  _id: String
+  name: String
+  issues: [IssuesFeed]
+  patients: [PatientsFeed]
+  ratings: [RatingsFeed]
+  createdAt: Date
+}
+
+type AuthPayload {
+  user: User
+}
+
+type RatingsFeed {
+  nps: Int
+  createdAt: Date
+}
+
+type IssuesFeed {
+  badPrescription: Int
+  labDelay: Int
+  lateCheckIn: Int
+  openedLate: Int
+  carelessWasteDisposal: Int
+  prescription: Int
+  staffId: String
+  createdAt: Date
+}
+
+type PatientsFeed {
+  count: Int
+  createdAt: Date
+}
+type RevenueFeed {
+  revenue: Float
+  createdAt: Date
+}
