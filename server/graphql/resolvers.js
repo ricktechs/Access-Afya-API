@@ -42,7 +42,19 @@ const Mutation = {
     const visit = await Visit.create({ ...args });
     return visit;
   },
-  updateAssessment: async (root, args, context, info) => {},
+  updateAssessment: async (root, args, context, info) => {
+    const visit = await Visit.findOneAndUpdate(
+      { _id: args.visitId },
+      {
+        $push: {
+          issues: [{ ...args.issues, staffId: args.staffId }],
+          patients: [args.patients],
+          revenue: [args.revenue],
+        },
+      }
+    );
+    return visit;
+  },
 };
 
 module.exports = { Query, Mutation };
