@@ -59,3 +59,28 @@ type RevenueFeed {
   revenue: Float
   createdAt: Date
 }
+
+
+#
+#
+# input types
+#
+#
+
+input IssuesFeedInput {
+  badPrescription: Int
+  labDelay: Int
+  lateCheckIn: Int
+  openedLate: Int
+  carelessWasteDisposal: Int
+  prescription: Int
+  staffId: String
+}
+
+input PatientsFeedInput {
+  count: Int
+}
+input RevenueFeedInput {
+  revenue: Float
+}
+
