@@ -11,7 +11,8 @@
   "author": "eric wahome <eric.wahome@gmail.com>",
   "license": "ISC",
   "dependencies": {
-    "apollo-server": "^2.19.0"
+    "apollo-server": "^2.19.0",
+    "mongoose": "^5.11.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.6"
