@@ -1,5 +1,5 @@
 require("dotenv").config();
-const { User } = require("../models");
+const { User, Visit } = require("../models");
 
 const Query = {
   getAllUsers: async (root, args, ctx, info) => {
@@ -9,7 +9,13 @@ const Query = {
     }
     return users;
   },
-  getAllVisits: async (root, args, ctx, info) => {},
+  getAllVisits: async (root, args, ctx, info) => {
+    const visits = Visit.find();
+    if (!visits) {
+      throw new Error("no visits found");
+    }
+    return visits;
+  },
 };
 const Mutation = {
   signUp: async (root, args, context, info) => {},
