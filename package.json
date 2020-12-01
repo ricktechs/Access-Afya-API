@@ -7,11 +7,11 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server index.js"
   },
-  "keywords": [
-
-  ],
+  "keywords": [],
   "author": "eric wahome <eric.wahome@gmail.com>",
   "license": "ISC",
-  "dependencies": {},
+  "dependencies": {
+    "apollo-server": "^2.19.0"
+  },
   "devDependencies": {}
 }
