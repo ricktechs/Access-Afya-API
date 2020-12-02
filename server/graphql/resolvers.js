@@ -4,7 +4,7 @@ const { User, Visit, Issue } = require("../models");
 
 const Query = {
   getAllUsers: async (root, args, ctx, info) => {
-    const users = User.find();
+    const users = User.find().populate("issuesReported");
     if (!users) {
       throw new Error("no users found");
     }
