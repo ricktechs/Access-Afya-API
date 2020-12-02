@@ -35,8 +35,17 @@ const visitSchema = new Schema(
       type: String,
       unique: true,
     },
-    patients: [{ type: new Schema({ count: Number }, { timestamps: true }) }],
-    ratings: [{ type: new Schema({ nps: Number }, { timestamps: true }) }],
+
+    patients: [
+      {
+        count: Number,
+        createdAt: { type: Date, default: Date.now },
+      },
+    ],
+    ratings: [{ nps: Number, createdAt: { type: Date, default: Date.now } }],
+    revenue: [
+      { revenue: Number, createdAt: { type: Date, default: Date.now } },
+    ],
   },
   { timestamps: true, toObject: { virtuals: true } }
 );
