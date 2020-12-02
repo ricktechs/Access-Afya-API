@@ -17,7 +17,7 @@ type Mutation {
     issues: IssuesFeedInput
     patients: PatientsFeedInput
     revenue: RevenueFeedInput
-    staffId: String
+    staffId: String!
   ): Visit
 
   updateAssessment(
