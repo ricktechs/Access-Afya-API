@@ -14,14 +14,21 @@ const issueSchema = new Schema({
   createdAt: { type: Date, default: Date.now },
 });
 
-const userSchema = new Schema({
-  name: String,
-  email: { type: String, unique: true },
-  password: String,
-  roles: [String],
-  issuesReported: [String],
+const userSchema = new Schema(
+  {
+    name: String,
+    email: { type: String, unique: true },
+    password: String,
+    roles: [String],
+  },
+  { timestamps: true, toObject: { virtuals: true } }
+);
+userSchema.virtual("issuesReported", {
+  ref: "Issue",
+  localField: "_id",
+  foreignField: "staffId",
+  justOne: false,
 });
-
 const visitSchema = new Schema(
   {
     name: {
