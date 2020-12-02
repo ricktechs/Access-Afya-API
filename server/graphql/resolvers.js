@@ -1,6 +1,6 @@
 require("dotenv").config();
 const bcrypt = require("bcryptjs");
-const { User, Visit } = require("../models");
+const { User, Visit, Issue } = require("../models");
 
 const Query = {
   getAllUsers: async (root, args, ctx, info) => {
