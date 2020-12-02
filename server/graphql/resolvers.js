@@ -53,16 +53,23 @@ const Mutation = {
     return visit;
   },
   updateAssessment: async (root, args, context, info) => {
-    const visit = await Visit.findOneAndUpdate(
-      { _id: args.visitId },
+    if (args.issues) {
+      Issue.create({
+        ...args.issues,
+        staffId: args.staffId,
+        visitId: args.visitId,
+      });
+    }
+    const visit = await Visit.findByIdAndUpdate(
+      args.visitId,
       {
         $push: {
-          issues: [{ ...args.issues, staffId: args.staffId }],
-          patients: [args.patients],
-          revenue: [args.revenue],
+          patients: [args.patients ? args.patients : { count: 0 }],
+          revenue: [args.revenue ? args.revenue : { revenue: 0 }],
         },
-      }
-    );
+      },
+      { new: true, lean: true }
+    ).populate("issues");
     return visit;
   },
 };
