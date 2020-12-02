@@ -46,7 +46,7 @@ const Mutation = {
         visitId: data._id,
       });
     }
-    const visit = await Visit.create({ ...args });
+    const visit = await Visit.create({ ...args }).populate("issues");
     return visit;
   },
   updateAssessment: async (root, args, context, info) => {
