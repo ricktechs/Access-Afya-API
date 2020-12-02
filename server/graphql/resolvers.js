@@ -39,6 +39,13 @@ const Mutation = {
   },
 
   addAssessment: async (root, args, context, info) => {
+    if (args.issues) {
+      Issue.create({
+        ...args.issues,
+        staffId: args.staffId,
+        visitId: data._id,
+      });
+    }
     const visit = await Visit.create({ ...args });
     return visit;
   },
