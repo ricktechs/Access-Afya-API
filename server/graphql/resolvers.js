@@ -11,7 +11,7 @@ const Query = {
     return users;
   },
   getAllVisits: async (root, args, ctx, info) => {
-    const visits = Visit.find();
+    const visits = Visit.find().populate("issues");
     if (!visits) {
       throw new Error("no visits found");
     }
