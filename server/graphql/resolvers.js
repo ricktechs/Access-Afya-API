@@ -1,4 +1,5 @@
 require("dotenv").config();
+const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 const { User, Visit, Issue } = require("../models");
 
@@ -39,14 +40,17 @@ const Mutation = {
   },
 
   addAssessment: async (root, args, context, info) => {
+    const visitId = mongoose.Types.ObjectId();
     if (args.issues) {
       Issue.create({
         ...args.issues,
         staffId: args.staffId,
-        visitId: data._id,
+        visitId: visitId,
       });
     }
-    const visit = await Visit.create({ ...args }).populate("issues");
+    const visit = await Visit.create({ ...args, _id: visitId }).populate(
+      "issues"
+    );
     return visit;
   },
   updateAssessment: async (root, args, context, info) => {
