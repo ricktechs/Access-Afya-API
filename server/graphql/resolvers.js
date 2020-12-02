@@ -48,9 +48,8 @@ const Mutation = {
         visitId: visitId,
       });
     }
-    const visit = await Visit.create({ ...args, _id: visitId }).populate(
-      "issues"
-    );
+    let visit = await Visit.create({ ...args, _id: visitId });
+    visit = await visit.populate("issues").execPopulate();
     return visit;
   },
   updateAssessment: async (root, args, context, info) => {
