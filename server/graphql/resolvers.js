@@ -12,7 +12,7 @@ const Query = {
     return users;
   },
   getAllVisits: async (root, args, ctx, info) => {
-    const visits = Visit.find().populate("issues");
+    const visits = Visit.find().populate("issues").populate("ratings");
     if (!visits) {
       throw new Error("no visits found");
     }
@@ -69,7 +69,9 @@ const Mutation = {
         },
       },
       { new: true, lean: true }
-    ).populate("issues");
+    )
+      .populate("issues")
+      .populate("ratings");
     return visit;
   },
   createRating: async (root, args, context, info) => {
