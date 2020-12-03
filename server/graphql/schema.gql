@@ -27,6 +27,8 @@ type Mutation {
     revenue: RevenueFeedInput
     staffId: String!
   ): Visit
+
+  createRating(stars: Int, visitId: String!): Visit
 }
 
 type User {
