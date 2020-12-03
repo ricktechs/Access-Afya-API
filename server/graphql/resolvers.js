@@ -1,7 +1,7 @@
 require("dotenv").config();
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
-const { User, Visit, Issue } = require("../models");
+const { User, Visit, Issue, Rating } = require("../models");
 
 const Query = {
   getAllUsers: async (root, args, ctx, info) => {
@@ -70,6 +70,11 @@ const Mutation = {
       },
       { new: true, lean: true }
     ).populate("issues");
+    return visit;
+  },
+  createRating: async (root, args, context, info) => {
+    let visit = await Rating.create({ nps: args.stars, visitId: args.visitId });
+    visit = await visit.populate("issues").populate("ratings").execPopulate();
     return visit;
   },
 };
