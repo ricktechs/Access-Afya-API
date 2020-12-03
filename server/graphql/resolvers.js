@@ -75,8 +75,14 @@ const Mutation = {
     return visit;
   },
   createRating: async (root, args, context, info) => {
-    let visit = await Rating.create({ nps: args.stars, visitId: args.visitId });
-    visit = await visit.populate("issues").populate("ratings").execPopulate();
+    const stars = args.stars > 5 ? 5 : args.stars;
+    if (args.visitId) {
+      Rating.create({ ...args, nps: stars });
+    }
+
+    const visit = await Visit.findOne({ _id: args.visitId })
+      .populate("issues")
+      .populate("ratings");
     return visit;
   },
 };
