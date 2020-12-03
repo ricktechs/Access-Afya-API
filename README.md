@@ -22,3 +22,18 @@ Configuration...
 ```sh
 MONGODB_URI=connection string
 ```
+
+### File Structure
+
+```
+├── README.md
+└──server
+   ├── index.js
+   ├── db
+   |    └── mongoDb.js
+   ├── grapql
+   |    ├── resolvers.js
+   |    └── schema.gql
+   └── models
+        └── index.js
+```
