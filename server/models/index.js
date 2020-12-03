@@ -13,6 +13,11 @@ const issueSchema = new Schema({
   staffId: { type: Schema.Types.ObjectId },
   createdAt: { type: Date, default: Date.now },
 });
+const ratingSchema = new Schema({
+  nps: Number,
+  visitId: { type: Schema.Types.ObjectId },
+  createdAt: { type: Date, default: Date.now },
+});
 
 const userSchema = new Schema(
   {
@@ -42,7 +47,6 @@ const visitSchema = new Schema(
         createdAt: { type: Date, default: Date.now },
       },
     ],
-    ratings: [{ nps: Number, createdAt: { type: Date, default: Date.now } }],
     revenue: [
       { revenue: Number, createdAt: { type: Date, default: Date.now } },
     ],
@@ -57,8 +61,16 @@ visitSchema.virtual("issues", {
   justOne: false,
 });
 
+visitSchema.virtual("ratings", {
+  ref: "Rating",
+  localField: "_id",
+  foreignField: "visitId",
+  justOne: false,
+});
+
 const User = mongoose.model("User", userSchema);
 const Visit = mongoose.model("Visit", visitSchema);
 const Issue = mongoose.model("Issue", issueSchema);
+const Rating = mongoose.model("Rating", ratingSchema);
 
-module.exports = { User, Visit, Issue };
+module.exports = { User, Visit, Issue, Rating };
